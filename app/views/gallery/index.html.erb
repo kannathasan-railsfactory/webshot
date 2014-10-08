@@ -1,0 +1,23 @@
+<h1>Gallery</h1>
+
+<%= form_tag('/gallery/store_image',  class: "form-inline", role: "form" ) do -%>
+  <div class="form-group">
+    <label class="sr-only" for="InputUrl">Enter Url</label>
+    <input class="form-control" id="InputUrl" placeholder="Enter Url" name='page_url'>
+  </div>
+  <button type="submit" class="btn btn-default">Grap</button>
+<% end -%>
+
+<hr>
+<% ScreenShot.all.in_groups_of(4) do |group| %>
+	<%= content_tag :div, class: "row" do -%>
+  	<% group.each do |shot| %>
+  	<% next if shot.blank? %>
+  		<%= content_tag :div, class: "col-xs-6 col-md-3" do -%>
+		    <a class="thumbnail">
+  				<%= image_tag shot.screenshot, :style => 'height: 200px;' %>
+  			</a>
+  		<% end %>
+  	<% end %>
+	<% end -%>
+<% end %>
